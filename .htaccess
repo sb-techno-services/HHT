@@ -1,0 +1,16 @@
+Options +FollowSymLinks
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^hanumanhindutemple.org [NC]
+RewriteRule ^(.*)$ https://www.hanumanhindutemple.org/$1 [L,R=301,NC] 
+
+
+RewriteEngine On
+RewriteRule ^event_([0-9]+).html /events_inner.php?j_id=$1 [QSA,L]
+RewriteRule ^news_([0-9]+).html /newsinner.php?j_id=$1 [QSA,L]
+RewriteRule ^pooja_details_([0-9]+).html /pooja_details.php?j_id=$1 [QSA,L]
+RewriteRule ^donation_details_([0-9]+).html /donate_details.php?j_id=$1 [QSA,L]
+
+
+
+

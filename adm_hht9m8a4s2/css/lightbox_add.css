@@ -1,0 +1,50 @@
+
+.black_overlay { display: none; position: absolute; top: 0%; left: 0%; width:100%; height:380%; background-color: black; z-index:10008; -moz-opacity: 0.8; opacity:.80; filter:alpha(opacity=80); }
+.white_content { background-color: white;
+    border: 16px solid #ccc;
+    display: none;
+    left: 32%;
+    min-height: 157px;
+    overflow: auto;
+    padding: 16px;
+    position: fixed;
+    top: 36%;
+    width: 378px;
+    z-index: 10009; }
+.white_content table input { border:1px solid #ccc; box-shadow:0 0 5px #dcdcdc inset; height:23px; padding:0 0 0 5px; }
+.white_content table textarea { border:1px solid #ccc; box-shadow:0 0 5px #dcdcdc inset; padding:0 0 0 5px;height:58px;  }
+.correctMsg { color: #666666; }
+.ErrorMsg { color:#FF0000; }
+.black_overlay1 { display: none; position: absolute; top: 0%; left: 0%; width:100%; height:380%; background-color: black; z-index:10008; -moz-opacity: 0.8; opacity:.80; filter:alpha(opacity=80); }
+.white_content1 { display: none; position: fixed; top:13%; left:17%; height:38%; padding: 16px; border: 16px solid #ccc; background-color: white; z-index:10009; overflow: auto; width:760px; min-height: 329px; }
+.white_content1 table input { border:1px solid #ccc; box-shadow:0 0 5px #dcdcdc inset; height:23px; padding:0 0 0 5px; }
+.white_content1 table textarea { border:1px solid #ccc; box-shadow:0 0 5px #dcdcdc inset; padding:0 0 0 5px; }
+.correctMsg { color: #666666; }
+.ErrorMsg { color:#FF0000; }
+.contactz { width:300px; float:left; }
+.feedback { float:left; width:440px; }
+.top_cont { float: left; margin: 0 0 20px; width: 308px; }
+.top_cont h5 { color: #3368ca; display: block; font: bold 13px/25px Arial, Geneva, sans-serif; margin: 0 0 5px; }
+.emal_img { float: left; margin: 0; padding: 0 5px 0 0; }
+.top_cont ul { display: block; list-style: none outside none; margin: 0 0 20px; }
+.top_cont ul li { color: #333333; font: 12px/20px Arial, Geneva, sans-serif; margin: 0 0 2px; }
+.bot_rit { float: left; margin: 21px 0 0 2px; padding: 0; width: 126px; }
+.bot_let { border-right: 1px dashed #999999; float: left; margin: 20px 14px 0 0; padding: 0 13px 0 0; width: 140px; }
+.tborder { border: 1px solid #dedede; border-radius: 5px; width:430px; }
+.close { position:absolute; top:0; right:0; z-index:888; }
+
+.white_content_add {
+    background-color: white;
+    border: 16px solid #ccc;
+    display: none;
+    left: 11%;
+    height: 650px;
+	overflow: scroll !important;
+    padding: 16px;
+    position: fixed;
+    top: 16%;
+    width: 920px;
+    z-index: 10009;
+	
+}
+.white_content_add table td { border-right:none !important;}

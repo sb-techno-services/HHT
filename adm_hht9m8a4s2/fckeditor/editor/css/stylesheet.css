@@ -1,0 +1,35 @@
+/* CSS Document */
+a{ text-decoration:none; outline:none;}
+.navbg{ background-image:url(../images/navbg.jpg); background-repeat:repeat-x;}
+
+a.menu{ font-family:Tahoma; font-size:13px; font-weight:bold; color:#FFFFFF; display:block; padding:8px 20px 0px 20px; float:left; height:28px;}
+a.menu:hover{ font-family:Tahoma; font-size:13px; font-weight:bold; color:#2b509a; background-color:#dcdcda; display:block; padding:8px 20px 0px 20px; float:left; height:28px;}
+.menuhighlight{ font-family:Tahoma; font-size:13px; font-weight:bold; color:#2b509a; background-color:#dcdcda; display:block; padding:8px 20px 0px 20px; float:left; height:28px;}
+
+.footerbg{ background-image:url(../images/footerbg.jpg); background-repeat:repeat-x;}
+
+.box1{ background-color:#f9fbfe; border: solid 1px #cbe0f6; padding:1px;}
+.box1bg{ background-color:#eaf4ff; }
+
+h1{ font-family: tahoma; font-size:18px; color:#0071bc; font-weight:bold; padding:0px; margin:0px;}
+h2{ font-family: trebuchet MS; font-size:18px; color:#7a7a7a; font-weight:bold; padding:0px; margin:0px;}
+
+p { line-height:18px; font-family: "trebuchet MS"; font-size:13px;}
+.formtext{ font-family:Tahoma; font-size:12px; color:#000000;}
+
+.form1{ width:125px; height:18px;}
+.form2{width:142px; height:18px;}
+
+.st{font-family: Tahoma; font-weight: normal; color: #2c3942; font-weight:normal; text-decoration: none; line-height:19px;}
+
+a.footnav{font-family: Tahoma; font-size:12px; color:#000000;}
+a.footnav:hover{font-family: Tahoma; font-size:12px; color:#000000; text-decoration:underline;}
+.line{ padding:0px 6px 0px 6px}
+.formbg{ background-image:url(../images/formbg.jpg); background-repeat:no-repeat;}
+.innerformbg{ width:148px; height:24px; background-image:url(../images/formbg.jpg); background-repeat:no-repeat; border:0px; padding:7px 0px 0px 30px;}
+
+.border{ background-color:#FFFFFF; border:solid 1px #ededed;}
+
+.textbg{ background-color:#F7F8FA; border:solid 1px #d1e0fe;}
+.text{ font-family:Arial; font-size:14px; color:#4d4d4d; text-decoration:none; line-height:26px;}
+.textbold{ font-family:Arial; font-size:14px; color:#4d4d4d; text-decoration:none; font-weight:bold;}

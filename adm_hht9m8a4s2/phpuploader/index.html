@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Multiple File Upload With Progress Bar - Web Developer Plus Demos</title>
+<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="js/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="js/jquery.swfupload.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$('#swfupload-control').swfupload({
+		upload_url: "upload-file.php",
+		file_post_name: 'uploadfile',
+		file_size_limit : "1024000",
+		file_types : "*.jpg;*.flv",
+		file_types_description : "Image and Video files",
+		file_upload_limit : 1000,
+		flash_url : "js/swfupload/swfupload.swf",
+		button_image_url : 'js/swfupload/wdp_buttons_upload_114x29.png',
+		button_width : 114,
+		button_height : 29,
+		button_placeholder : $('#button')[0],
+		debug: false
+	})
+		.bind('fileQueued', function(event, file){
+			var listitem='<li id="'+file.id+'" >'+
+				file.name+' ('+Math.round(file.size/1024)+' KB) <span class="progressvalue" ></span>'+
+				'<span class="status" ><img src="uploading.gif" border="0"></span>&nbsp;'+
+				'<span class="cancel" >&nbsp;</span>'+
+				'<div class="progressbar" ><div class="progress" ></div></div>'+
+				'</li>';
+			$('#log').append(listitem);
+			$('li#'+file.id+' .cancel').bind('click', function(){
+				var swfu = $.swfupload.getInstance('#swfupload-control');
+				swfu.cancelUpload(file.id);
+				$('li#'+file.id).slideUp('fast');
+			});
+			// start the upload since it's queued
+			$(this).swfupload('startUpload');
+		})
+		.bind('fileQueueError', function(event, file, errorCode, message){
+			alert('Size of the file '+file.name+' is greater than limit');
+		})
+		.bind('fileDialogComplete', function(event, numFilesSelected, numFilesQueued){
+			$('#queuestatus').text('Files Selected: '+numFilesSelected+' / Queued Files: '+numFilesQueued);
+		})
+		.bind('uploadStart', function(event, file){
+			$('#log li#'+file.id).find('span.status').text('Uploading...');
+			$('#log li#'+file.id).find('span.progressvalue').text('0%');
+			$('#log li#'+file.id).find('span.cancel').hide();
+		})
+		.bind('uploadProgress', function(event, file, bytesLoaded){
+			//Show Progress
+			var percentage=Math.round((bytesLoaded/file.size)*100);
+			$('#log li#'+file.id).find('div.progress').css('width', percentage+'%');
+			$('#log li#'+file.id).find('span.progressvalue').text(percentage+'%');
+		})
+		.bind('uploadSuccess', function(event, file, serverData){
+			var item=$('#log li#'+file.id);
+			item.find('div.progress').css('width', '100%');
+			item.find('span.progressvalue').text('100%');
+			item.addClass('success').find('span.status').html('<img src="uploadok.png" border="0"/>');
+			
+			var ext = file.name.substr(file.name.lastIndexOf('.'));
+	   var div=document.createElement("SPAN");
+	   var link=document.createElement("A");
+	  if(ext == '.flv')
+	  {
+	  	link.setAttribute("href","flv.php?fname="+file.name);
+		link.innerHTML="<img src='uploads/video2.jpg' width='120' height='100' style=\"border: 1px solid #999999;\">&nbsp;&nbsp;";
+		link.target="_blank";
+	  }
+	  else
+	  {
+		
+		link.setAttribute("href","uploads/"+file.name);
+		link.innerHTML="<img src='uploads/"+file.name+"' width='120' height='100' style=\"border: 1px solid #999999;\">&nbsp;&nbsp;";
+		link.target="_blank";
+	  }	
+		div.appendChild(link);
+		document.getElementById('imgs').appendChild(div);
+		if(document.getElementById('img_array').value!="")
+		{
+			document.getElementById('img_array').value+=","+file.name;
+			
+		}
+		else
+		{
+			document.getElementById('img_array').value+=file.name;
+		}
+		// displaying the save and ignore buttons.
+		document.getElementById('sub_id').style.display="inline";
+	 	document.getElementById('ing_id').style.display="inline";
+			
+			if(document.getElementById('img_array').value=="")
+			{
+				document.getElementById('img_array').value=file.name;
+			}
+			else
+			{
+				document.getElementById('img_array').value=document.getElementById('img_array').value+','+file.name;
+			}
+			
+		})
+		.bind('uploadComplete', function(event, file){
+			// upload has completed, try the next one in the queue
+			$(this).swfupload('startUpload');
+		})
+	
+});	
+
+</script>
+<style type="text/css" >
+#swfupload-control p{ margin:10px 5px; font-size:0.9em; }
+#log{ margin:0; padding:0; width:200px;}
+#log li{ list-style-position:inside; margin:2px; border:1px solid #ccc; padding:5px; font-size:11px; 
+	font-family:Arial; color:#000000; background:#fff; position:relative;}
+#log li .progressbar{ border:1px solid #333; height:3px; background:#fff; }
+#log li .progress{ background:#999; width:0%; height:5px; }
+#log li p{ margin:0; }
+#log li .status{ margin:0; color:#009900; float:left;}
+#log li.success{ border:1px solid #cccccc; background:#ffffff; }
+#log li span.cancel{ position:absolute; top:5px; right:5px; width:20px; height:20px; 
+	background:url('js/swfupload/cancel.png') no-repeat; cursor:pointer; }
+a {
+text-decoration: none;
+}	
+</style>
+</head>
+<body>
+<table width='100%' cellpadding="2" cellspacing="2" style="border: 1px solid #CCCCCC;">
+	<tr>
+	<td width="31%" valign="top">
+	<div id="swfupload-control">
+	
+	<input type="button" id="button" />
+	<ol id="log"></ol>
+</div>
+	</td>
+	
+	<td width="69%" id='imgs' border='0'>	</td>
+	</tr>
+	<tr>
+	<td colspan='2' align='right'>
+	<form name='form' action="index.php?op=viewlisting" method="post" enctype="multipart/form-data">
+	<input type='text' id='img_array' name='img_names' value='' />
+	<!--<input type='hidden' id='car_id' name='car_id' value='<?=$_GET['cid']?>' />-->
+	<input type="submit" id='sub_id' name='savefiles' value='Save Files' class='buttonbg' style="display:none;"/>
+	<input type="submit" id='ing_id' name='igonrefiles' value='Ignore' class='buttonbg' style="display:none;"/>
+	</form>
+	</td>
+	</tr>
+	</table>
+	
+
+
+</body>
+</html>
